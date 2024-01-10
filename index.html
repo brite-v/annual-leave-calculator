@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annual Leave Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Annual Leave Calculator</h1>
+        <form>
+            <div class="form-group">
+                <label for="latestPayDate">Your latest pay date:</label>
+                <input type="date" id="latestPayDate" name="latestPayDate">
+            </div>
+            <div class="form-group">
+                <label for="annualLeaveStartDate">Annual leave start date:</label>
+                <input type="date" id="annualLeaveStartDate" name="annualLeaveStartDate">
+            </div>
+            <div class="checkbox-group">
+                <label for="annualLeaveEntitlement">Annual Leave Entitlement:</label>
+                <input type="number" id="annualLeaveEntitlement" name="annualLeaveEntitlement" min="0">
+                <label for="negativeCheckbox">Negative?</label>
+                <input type="checkbox" id="negativeCheckbox" onchange="toggleNegative()">
+            </div>
+            <div class="form-group">
+				<label for="annualLeaveAccrual">Annual Leave Accrual:</label>
+				<input type="number" id="annualLeaveAccrual" name="annualLeaveAccrual" min="0">
+			</div>
+			<div class="form-group">
+				<label for="shiftLeaveHours">Shift Leave in Hours:</label>
+				<input type="number" id="shiftLeaveHours" name="shiftLeaveHours" min="0">
+			</div>
+            <button type="button" onclick="calculateLeave()" class="calculate-btn">Calculate</button>
+        </form>
+        <div class="result">
+            <label for="calculatedResultHours">Annual Leave in Hours:</label>
+            <input type="text" id="calculatedResultHours" readonly>
+        </div>
+        <div class="result">
+            <label for="calculatedResultDaysWorking">Annual Leave in Days (Working days only):</label>
+            <input type="text" id="calculatedResultDaysWorking" readonly>
+        </div>
+        <div class="result">
+            <label for="calculatedResultDaysIncludingOff" style="display: none;">Annual Leave in Days (Including two days off per week):</label>
+            <input type="text" id="calculatedResultDaysIncludingOff" readonly hidden>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

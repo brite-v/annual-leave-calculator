@@ -1,0 +1,119 @@
+/* Existing CSS styles */
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+	text-align: center;
+	font-family: 'Arial', sans-serif;
+	font-size: 2.5em;
+	color: #007bff;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin-bottom: 20px;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.form-group {
+	margin-bottom: 20px;
+}
+
+/* CSS for layout adjustment */
+.checkbox-group {
+	display: flex;
+	align-items: center;
+	 margin-bottom: 20px;
+}
+.checkbox-group label {
+    display: inline-block;
+    margin-right: 10px;
+	white-space: nowrap;
+}
+
+.checkbox-group input {
+    vertical-align: middle;
+    margin-right: 10px;
+
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="date"],
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+input[type="date"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Media Query for Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 80%;
+    }
+}
+
+/* Styling for the Calculate button */
+.calculate-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.calculate-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Styling for the result area */
+.result {
+    margin-top: 20px;
+}
+
+.result label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.result input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    color: #333;
+    font-weight: bold;
+}
