@@ -48,9 +48,14 @@ function setDefaultLatestPayDate() {
 
     const formattedDate = today.toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
     document.getElementById('latestPayDate').value = formattedDate; // Set the value
+	document.getElementById('annualLeaveStartDate').value = formattedDate; // Set the value
 }
 
 // Call the function to set default value on window load
 window.onload = function() {
     setDefaultLatestPayDate();
+	if (screen.width < 6050) {
+        var mvp = document.getElementById('vp');
+        mvp.setAttribute('content','user-scalable=no,width=750');
+    }
 };
