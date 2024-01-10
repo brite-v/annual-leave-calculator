@@ -4,6 +4,7 @@ function calculateLeave() {
     const annualLeaveAccrual = parseFloat(document.getElementById('annualLeaveAccrual').value) || 0;
     const annualLeaveEntitlement = parseFloat(document.getElementById('annualLeaveEntitlement').value) || 0;
     const shiftLeaveHours = parseFloat(document.getElementById('shiftLeaveHours').value) || 0;
+    const alternateDays = parseFloat(document.getElementById('alternateDays').value) || 0;
 
     // Calculate the difference in days
     const differenceDays = Math.floor((annualLeaveStartDate - latestPayDate) / (1000 * 60 * 60 * 24));
@@ -15,7 +16,7 @@ function calculateLeave() {
     const totalAnnualLeaveHours = fortnights * 6.2;
 
     // Multiply by 40 hours for annualLeaveAccrual and annualLeaveEntitlement
-    const totalAnnualLeaveHoursWithEntitlement = totalAnnualLeaveHours + (annualLeaveEntitlement * 40) + (annualLeaveAccrual * 40) + shiftLeaveHours;
+    const totalAnnualLeaveHoursWithEntitlement = totalAnnualLeaveHours + (annualLeaveEntitlement * 40) + (annualLeaveAccrual * 40) + shiftLeaveHours + (alternateDays * 8);
 
     // Display the total annual leave in hours
     document.getElementById('calculatedResultHours').value = totalAnnualLeaveHoursWithEntitlement.toFixed(2);
@@ -26,6 +27,7 @@ function calculateLeave() {
     // Display the result in the appropriate input box
     document.getElementById('calculatedResultDaysWorking').value = totalAnnualLeaveDaysWorking;
 }
+
 function toggleNegative() {
     const entitlementInput = document.getElementById('annualLeaveEntitlement');
     const negativeCheckbox = document.getElementById('negativeCheckbox');
