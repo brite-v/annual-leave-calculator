@@ -6,10 +6,10 @@ function calculateLeave() {
     const shiftLeaveHours = parseFloat(document.getElementById('shiftLeaveHours').value) || 0;
     const alternateDays = parseFloat(document.getElementById('alternateDays').value) || 0;
     const normalWorkHours = parseFloat(document.getElementById('normalWorkHours').value) || 40;
-	const holidayPayRate = parseFloat("8");
+    const holidayPayRate = parseFloat("8");
 	
-	//Calculate the fortnightly annual leave hours depending on the number of hours worked
-	const fortnightlyAnnualLeave = parseFloat(holidayPayRate * normalWorkHours / 100 * 2);
+    //Calculate the fortnightly annual leave hours depending on the number of hours worked
+    const fortnightlyAnnualLeave = parseFloat(holidayPayRate * normalWorkHours / 100 * 2);
 
     // Calculate the difference in days
     const differenceDays = Math.floor((annualLeaveStartDate - latestPayDate) / (1000 * 60 * 60 * 24));
@@ -53,7 +53,7 @@ function setDefaultLatestPayDate() {
 
     const formattedDate = today.toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
     document.getElementById('latestPayDate').value = formattedDate; // Set the value
-	document.getElementById('annualLeaveStartDate').value = formattedDate; // Set the value
+    document.getElementById('annualLeaveStartDate').value = formattedDate; // Set the value
 }
 
 // Call the function to set default value on window load
