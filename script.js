@@ -1,15 +1,17 @@
 function calculateLeave() {
+
     const latestPayDate = new Date(document.getElementById('latestPayDate').value);
     const annualLeaveStartDate = new Date(document.getElementById('annualLeaveStartDate').value);
     const annualLeaveAccrual = parseFloat(document.getElementById('annualLeaveAccrual').value) || 0;
     const annualLeaveEntitlement = parseFloat(document.getElementById('annualLeaveEntitlement').value) || 0;
     const shiftLeaveHours = parseFloat(document.getElementById('shiftLeaveHours').value) || 0;
     const alternateDays = parseFloat(document.getElementById('alternateDays').value) || 0;
-    const normalWorkHours = parseFloat(document.getElementById('normalWorkHours').value) || 40;
-    const holidayPayRate = parseFloat("8");
+    const normalWeeklyWorkHours = parseFloat(document.getElementById('normalWeeklyWorkHours').value) || 40;
+    const dailyWorkHours = parseFloat("8");
+    const annualLeaveEntitlementWeeks = parseFloat("4");
 	
     //Calculate the fortnightly annual leave hours depending on the number of hours worked
-    const fortnightlyAnnualLeave = parseFloat(holidayPayRate * normalWorkHours / 100 * 2);
+    const fortnightlyAnnualLeave = parseFloat((annualLeaveEntitlementWeeks * normalWeeklyWorkHours) / 26);
 
     // Calculate the difference in days
     const differenceDays = Math.floor((annualLeaveStartDate - latestPayDate) / (1000 * 60 * 60 * 24));
@@ -21,7 +23,7 @@ function calculateLeave() {
     const totalAnnualLeaveHours = fortnights * fortnightlyAnnualLeave;
 
     // Use the value stored in alternateDays
-    const totalAnnualLeaveHoursWithEntitlement = totalAnnualLeaveHours + (annualLeaveEntitlement * normalWorkHours) + (annualLeaveAccrual * normalWorkHours) + shiftLeaveHours + (alternateDays * 8);
+    const totalAnnualLeaveHoursWithEntitlement = totalAnnualLeaveHours + (annualLeaveEntitlement * normalWeeklyWorkHours) + (annualLeaveAccrual * normalWeeklyWorkHours) + shiftLeaveHours + (alternateDays * 8);
 
     // Display the total annual leave in hours
     document.getElementById('calculatedResultHours').value = totalAnnualLeaveHoursWithEntitlement.toFixed(2);
