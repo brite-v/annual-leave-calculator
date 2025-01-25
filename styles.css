@@ -60,7 +60,7 @@ label {
 }
 .signature {
     font-family: 'Dancing Script', cursive;
-    font-size: 16px;
+    font-size: 24px;
     color: #007bff; /* Same blue color as used in the heading */
     position: fixed;
     bottom: 10px;
