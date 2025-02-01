@@ -13,40 +13,75 @@
 <body>
     <div class="container">
         <h1>Annual Leave Calculator</h1>
+        
+        <button class="readme-toggle" onclick="toggleReadme()">Show Help/Readme</button>
+        <div id="readmeSection" class="readme-section" style="display: none;">
+            <h2>Readme - How This Calculator Works</h2>
+            <p>This calculator helps employees estimate their total annual leave based on various factors such as pay date, entitlements, and work history.</p>
+            <ul>
+                <li><strong>Your latest pay date:</strong> This is the date when your most recent salary was deposited into your bank account, typically on a Wednesday.</li>
+                <li><strong>Annual leave start date:</strong> The future date up to which you wish to calculate your total leave. If you wish to calculate <strong>ONLY</strong> the annual leave shown in your payslip, leave it unchanged or choose it to be same as latest pay date. This value is usually used to check the annual leaves you are entitled to when you plan your holidays.</li>
+                <li><strong>Your normal work hours per week:</strong> The standard weekly work hours based on your employment contract.</li>
+                <li><strong>Annual Leave Entitlement:</strong> The leave entitlement displayed on your payslip in weeks.</li>
+				<li><strong>Negative?</strong> If the leave entitlement displayed on your payslip is negative, check this box.</li>
+                <li><strong>Annual Leave Accrual:</strong> Additional accrued leave, displayed on your payslip, also in weeks.</li>
+                <li><strong>Shift Leave in Hours:</strong> Extra leave granted for working qualifying shifts, displayed in hours on your payslip.</li>
+                <li><strong>Alternate Days:</strong> Days off earned, for working on a Public Holiday displayed in days on the payslip.</li>
+                <li><strong>Enable Advanced Calculator:</strong> Enables the calculation of additional entitlements, including long service leave.</li>
+                <li><strong>Employment Start Date:</strong> Required for advanced calculations, tracking long service leave and extra annual leave entitlements.</li>
+                <li><strong>Annual Leave in Hours:</strong> Displays the total calculated annual leave in hours.</li>
+                <li><strong>Annual Leave in Days:</strong> Shows the total annual leave in days.</li>
+				<li><strong>Long Service Leave (In Days):</strong> Displays the long service leave in days if any. This is already included in the Total Leave in hours and days</li>
+                <li><strong>Additional Work Weeks (In Days):</strong> Displays the additional annual leave entitlement after the completion of five years of service in days if any. This is already included in the Total Leave in hours and days</li>
+				<li>Total Shift Leave and Alternate Days are shown separately as in the payslip which is already included in the calculated annual leave.</li>
+            </ul>
+            <p><strong>Note:</strong> If you are estimating leave for a future date, the calculator will not include any <strong>FUTURE </strong>shift leave or alternate holidays, as they cannot be predetermined.</p>
+        </div>
+        
         <form>
-            <div class="form-group">
+            <div class="form-group tooltip" data-tooltip="Your most recent salary paid date (usually Wednesday)">
                 <label for="latestPayDate">Your latest pay date:</label>
                 <input type="date" id="latestPayDate" name="latestPayDate">
             </div>
-            <div class="form-group">
+            <div class="form-group tooltip" data-tooltip="Calculate leave up to this date">
                 <label for="annualLeaveStartDate">Annual leave start date:</label>
                 <input type="date" id="annualLeaveStartDate" name="annualLeaveStartDate">
             </div>
-            <div class="form-group">
-                <label for="normalWeeklyWorkHours">Your normal work hours per week (In hours):</label>
+            <div class="form-group tooltip" data-tooltip="Your standard weekly work hours">
+                <label for="normalWeeklyWorkHours">Your normal work hours per week:</label>
                 <input type="number" id="normalWeeklyWorkHours" name="normalWeeklyWorkHours" min="0" value="40">
             </div>
-            <div class="checkbox-group">
+            <div class="checkbox-group tooltip" data-tooltip="Enter your entitlement as shown on your payslip">
                 <label for="annualLeaveEntitlement">Annual Leave Entitlement:</label>
                 <input type="number" id="annualLeaveEntitlement" name="annualLeaveEntitlement" min="0">
                 <label for="negativeCheckbox">Negative?</label>
                 <input type="checkbox" id="negativeCheckbox" onchange="toggleNegative()">
             </div>
+            <div class="form-group tooltip" data-tooltip="Additional leave accrued">
+                <label for="annualLeaveAccrual">Annual Leave Accrual:</label>
+                <input type="number" id="annualLeaveAccrual" name="annualLeaveAccrual" min="0">
+            </div>
+            <div class="form-group tooltip" data-tooltip="Shift leave granted in hours">
+                <label for="shiftLeaveHours">Shift Leave in Hours:</label>
+                <input type="number" id="shiftLeaveHours" name="shiftLeaveHours" min="0">
+            </div>
+            <div class="form-group tooltip" data-tooltip="Alternate holidays earned in days">
+                <label for="alternateDays">Alternate Days (In days):</label>
+                <input type="number" id="alternateDays" name="alternateDays" min="0">
+            </div>
             <div class="form-group">
-				<label for="annualLeaveAccrual">Annual Leave Accrual:</label>
-				<input type="number" id="annualLeaveAccrual" name="annualLeaveAccrual" min="0">
-			</div>
-			<div class="form-group">
-				<label for="shiftLeaveHours">Shift Leave in Hours:</label>
-				<input type="number" id="shiftLeaveHours" name="shiftLeaveHours" min="0">
-			</div>
-			<div class="form-group">
-				<label for="alternateDays">Alternate Days (In days):</label>
-				<input type="number" id="alternateDays" name="alternateDays" min="0">
-			</div>
+                <input type="checkbox" id="enableAdvanced" onchange="toggleAdvancedCalculator()">
+                <label for="enableAdvanced">Enable Advanced Calculator</label>
+            </div>
+            <div id="advancedCalculator" style="display: none;">
+                <div class="form-group tooltip" data-tooltip="Enter your employment start date for advanced calculations">
+                    <label for="employmentStartDate">Employment Start Date:</label>
+                    <input type="date" id="employmentStartDate" name="employmentStartDate">
+                </div>
+            </div>
             <button type="button" onclick="calculateLeave()" class="calculate-btn">Calculate</button>
         </form>
-        <div class="result">
+		<div class="result">
             <label for="calculatedResultHours">Annual Leave in Hours:</label>
             <input type="text" id="calculatedResultHours" readonly>
         </div>
@@ -58,9 +93,26 @@
             <label for="calculatedResultDaysIncludingOff" style="display: none;">Annual Leave in Days (Including two days off per week):</label>
             <input type="text" id="calculatedResultDaysIncludingOff" readonly hidden>
         </div>
+        <div id="advancedResults" style="display: none;">
+            <div class="result">
+                <label for="longServiceLeaveDays">Long Service Leave (In Days):</label>
+                <input type="text" id="longServiceLeaveDays" readonly>
+            </div>
+            <div class="result">
+                <label for="additionalWorkWeeksDays">Additional Work Weeks (In Days):</label>
+                <input type="text" id="additionalWorkWeeksDays" readonly>
+            </div>
+            <div class="result">
+                <label for="shiftLeaveTotalHours">Total Shift Leave (In Hours):</label>
+                <input type="text" id="shiftLeaveTotalHours" readonly>
+            </div>
+            <div class="result">
+                <label for="alternateDaysTotal">Alternate Days (In Days):</label>
+                <input type="text" id="alternateDaysTotal" readonly>
+            </div>
+        </div>
+		<div class="signature">Brite</div>
     </div>
-	<div class="signature">Brite</div>
     <script src="script.js"></script>
 </body>
-
 </html>
