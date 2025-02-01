@@ -1,11 +1,9 @@
-/* Basic Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body Styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -18,39 +16,39 @@ body {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	position: relative;
+    padding-bottom: 40px;
 }
 
 h1 {
-	text-align: center;
-	font-family: 'Arial', sans-serif;
-	font-size: 2.5em;
-	color: #007bff;
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	margin-bottom: 20px;
-	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 2.5em;
+    color: #007bff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .form-group {
-	margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
-/* CSS for layout adjustment */
 .checkbox-group {
-	display: flex;
-	align-items: center;
-	margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }
 .checkbox-group label {
     display: inline-block;
     margin-right: 10px;
-	white-space: nowrap;
+    white-space: nowrap;
 }
 
 .checkbox-group input {
     vertical-align: middle;
     margin-right: 10px;
-
 }
 
 label {
@@ -58,13 +56,14 @@ label {
     font-weight: bold;
     margin-bottom: 5px;
 }
+
 .signature {
     font-family: 'Dancing Script', cursive;
-    font-size: 24px;
-    color: #007bff; /* Same blue color as used in the heading */
-    position: fixed;
+    font-size: 28px;
+    color: #007bff;
+    position: absolute;
     bottom: 10px;
-    right: 20px;
+    right: 15px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
@@ -83,14 +82,12 @@ input[type="number"]:focus {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Media Query for Responsive Design */
 @media (max-width: 480px) {
     .container {
         width: 120%;
     }
 }
 
-/* Styling for the Calculate button */
 .calculate-btn {
     background-color: #007bff;
     color: #fff;
@@ -105,7 +102,6 @@ input[type="number"]:focus {
     background-color: #0056b3;
 }
 
-/* Styling for the result area */
 .result {
     margin-top: 20px;
 }
@@ -124,4 +120,111 @@ input[type="number"]:focus {
     background-color: #f9f9f9;
     color: #333;
     font-weight: bold;
+}
+
+#advancedResults {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #28a745;
+    border-radius: 5px;
+    background-color: #e9f9ee;
+}
+
+.readme-section {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 5px solid #007bff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    line-height: 1.6;
+    font-size: 16px;
+    color: #333;
+    transition: all 0.3s ease-in-out;
+}
+
+.readme-section h2 {
+    color: #007bff;
+    font-size: 22px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.readme-section p {
+    margin-bottom: 10px;
+    text-align: justify;
+}
+
+.readme-section ul {
+    padding-left: 20px;
+}
+
+.readme-section ul li {
+    margin-bottom: 8px;
+    list-style-type: disc;
+}
+
+.readme-toggle {
+    display: block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    width: 100%;
+	margin-bottom: 20px;
+}
+
+.readme-toggle:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .readme-section {
+        font-size: 14px;
+        padding: 15px;
+    }
+
+    .readme-section h2 {
+        font-size: 18px;
+    }
+
+    .readme-toggle {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+.tooltip {
+    position: relative;
+}
+
+.tooltip::after {
+    content: attr(data-tooltip);
+    visibility: hidden;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+    z-index: 1000;
+    font-size: 14px;
+    width: max-content;
+}
+
+.tooltip:hover::after {
+    visibility: visible;
+    opacity: 1;
 }
